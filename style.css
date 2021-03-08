@@ -8,14 +8,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width:  100vw;
+    height: 100vh;
 }
 
 main {
     margin: 10px;
     padding: 15px;
     background-color: #000000;
-    max-width: 50vw;
-    min-height: 50vh;
+    max-width: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -32,16 +33,18 @@ main {
     text-align: right;
     font-size: 30px;
     padding: 10px;
-    width: 340px;
+    max-width: 270px;
+    border-radius: 3px;
 }
 
 .buttonContainer {
     display: grid;
-    grid-template-columns: repeat(4,75px);
+    grid-template-columns: repeat(4,minmax(75px, 200px));
+    grid-template-rows: repeat(4, minmax(50px, 100px));
 }
 
 button {
-    
+    border-radius: 3px;
     margin: 3px;
     padding: 5px;
     font-size: 30px;
@@ -51,4 +54,16 @@ button {
 button:hover {
     background-color: #868686;
     border-color: #868686;
+}
+
+@media screen and (max-width: 500px)
+{
+    main {
+        min-width:90vw;
+        min-height: 90vh;
+    }
+
+    .screen {
+        max-height: 200px;
+    }
 }

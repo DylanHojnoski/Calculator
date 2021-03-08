@@ -99,7 +99,7 @@ function assignNum(num)
         {
             num1 = num;
         }
-        else if(num1.toString().length < 15)
+        else if(num1.toString().length < 12)
         {
             num1 = Number(num1 * 10) + Number(num);
         }
@@ -148,9 +148,9 @@ function clear()
 
 function checkLength(num)
 {
-    if(num.toString().length > 15 && num2 != 0)
+    if(num.toString().length > 12 && num2 != 0)
     {
-        num = Number(num).toFixed(15);
+        num = Number(num).toFixed(12);
     }
     return num;
 }
