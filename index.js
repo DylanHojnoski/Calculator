@@ -1,7 +1,7 @@
 let num1;
 let num2;
 let operator;
-
+let answer;
 const screen = document.getElementById("screen");
 const body = document.querySelector("body");
 body.addEventListener("load", assignButtons());
@@ -49,7 +49,7 @@ function operate()
             break;
 
         case "/": 
-            screen.textContent = divide(num1, num1);
+            screen.textContent = checkLength(divide(num1, num2));
             break;
         
         default:
@@ -101,7 +101,9 @@ function assignNum(num)
         {
             num1 = Number(num1 * 10) + Number(num);
         }
+        checkLength(num1);
         screen.textContent = num1;
+        
     }
     else
     {
@@ -113,6 +115,7 @@ function assignNum(num)
         {
         num2 = Number(num2 * 10) + Number(num);
         }
+        checkLength(num2);
         screen.textContent = num2;
     }
     return num;
@@ -130,4 +133,14 @@ function clear()
     num1 = undefined;
     num2 = undefined;
     operator = undefined;
+    answer = undefined;
+}
+
+function checkLength(num)
+{
+    if(num.toString().length > 10)
+    {
+        num = Number(num).toFixed(10);
+    }
+    return num;
 }
