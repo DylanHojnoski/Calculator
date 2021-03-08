@@ -37,24 +37,25 @@ function operate()
     switch(operator)
     {
         case "+":
-            screen.textContent = add(num1,num2);
+            answer = add(num1,num2);
             break;
 
         case "-":
-            screen.textContent = subtract(num1, num2);
+            answer = subtract(num1, num2);
             break;
 
         case "*":
-            screen.textContent = multiply(num1, num2);
+            answer = multiply(num1, num2);
             break;
 
         case "/": 
-            screen.textContent = checkLength(divide(num1, num2));
+            answer = checkLength(divide(num1, num2));
             break;
         
         default:
             break;
     }
+    screen.textContent = answer;
 }
 
 function assignButtons()
@@ -97,11 +98,10 @@ function assignNum(num)
         {
             num1 = num;
         }
-        else
+        else if(num1.toString().length < 15)
         {
             num1 = Number(num1 * 10) + Number(num);
         }
-        checkLength(num1);
         screen.textContent = num1;
         
     }
@@ -111,7 +111,8 @@ function assignNum(num)
         {
             num2 = num;
         }
-        else
+        
+        else if(num2.toString().length < 15)
         {
         num2 = Number(num2 * 10) + Number(num);
         }
@@ -122,7 +123,7 @@ function assignNum(num)
 }
 
 function assignOperator(op)
-{
+{   
     operator = op;
     screen.textContent = op;
 }
@@ -138,9 +139,9 @@ function clear()
 
 function checkLength(num)
 {
-    if(num.toString().length > 10)
+    if(num.toString().length > 15)
     {
-        num = Number(num).toFixed(10);
+        num = Number(num).toFixed(15);
     }
     return num;
 }
