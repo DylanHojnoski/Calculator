@@ -22,7 +22,7 @@ function multiply(num1, num2)
 
 function divide(num1, num2)
 {
-    if(num2 != 0)
+    if(num2 != "0")
     {
         return num1 / num2;
     }
@@ -34,6 +34,8 @@ function divide(num1, num2)
 
 function operate()
 {
+    num1 = Number(num1);
+    num2 = Number(num2);
     switch(operator)
     {
         case "+":
@@ -68,23 +70,22 @@ function assignButtons()
             if (regex.test(buttons[i].textContent))
             {
                 assignNum(buttons[i].textContent);
-                console.log("press");
             }
             else if (buttons[i].textContent == "C")
             {
                 clear();
+                answer = undefined;
+                screen.textContent = "";
             }
             else if(buttons[i].textContent != "=")
             {
                 assignOperator(buttons[i].textContent);
-                console.log("ress1");
             }
             else
             {
-                num1 = Number(num1);
-                num2 = Number(num2);
+                screen.textContent = "";
                 operate();
-               // clear();
+                clear();
             }
         });
     }
@@ -124,22 +125,30 @@ function assignNum(num)
 
 function assignOperator(op)
 {   
+    if(num1 == undefined && answer != undefined)
+    {
+        num1 = answer;
+    }
+    else if (operator != undefined && num2 != undefined && num1 != undefined)
+    {
+        operate();
+        clear();
+        num1 = answer;
+    }
     operator = op;
     screen.textContent = op;
 }
 
 function clear()
 {
-    screen.textContent = "";
     num1 = undefined;
     num2 = undefined;
     operator = undefined;
-    answer = undefined;
 }
 
 function checkLength(num)
 {
-    if(num.toString().length > 15)
+    if(num.toString().length > 15 && num2 != 0)
     {
         num = Number(num).toFixed(15);
     }
